@@ -13,14 +13,14 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class GetAllUsersService {
-    private final UserRepository userRepository;
-
-    public List<UserDTO> execute(){
-        List<User> users = userRepository.findAll();
-        return users
-        .stream()
-        .map(UserDTO::convert)
-        .collect(Collectors.toList());
-    }
+public class QueryByNomeLikeService {
+ private final UserRepository userRepository;
+ 
+ public List<UserDTO> execute(String nome){
+   List<User> users = userRepository.queryByNomeLike(nome);
+    return users
+    .stream()
+    .map(UserDTO::convert)
+    .collect(Collectors.toList());
+ }
 }
